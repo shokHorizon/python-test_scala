@@ -1,16 +1,21 @@
+# Using python 3.10.7
+
 class ArrayConverter:
     def __init__(self, array: list) -> None:
+        # Normalize array to str
         self.array =  self.normalize_array(array)
-
+    
     def normalize_array(self, array: list) -> list:
         normalized_array = list()
         for elem in array:
+            # Type match instead of if statements
             match elem:
                 case int():
                     if elem < 38:
                         normalized_array.append(str(elem))
                 case str():
-                    if elem.isnumeric() and int(elem) < 38:
+                    # Includes negative value str case
+                    if elem.replace('-', '').isnumeric() and int(elem) < 38:
                         normalized_array.append(elem)
                 case list():
                     for nested_elem in elem:
